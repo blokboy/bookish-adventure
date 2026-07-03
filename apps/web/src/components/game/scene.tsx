@@ -126,7 +126,7 @@ export const Scene = () => {
           <ThoughtBubble
             visible={Boolean(bubbleText)}
             text={bubbleText ?? ''}
-            align={atRightWall ? 'left' : 'right'}
+            align={atRightWall ? 'left' : atLeftWall ? 'right' : 'center'}
           />
           <PixelSprite
             frame={frame}
