@@ -10,7 +10,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, './apps/web/src'),
-      '@starter/backend': resolve(__dirname, './packages/backend/src'),
     },
   },
 });

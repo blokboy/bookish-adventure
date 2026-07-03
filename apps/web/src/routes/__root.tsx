@@ -1,28 +1,18 @@
 /// <reference types="vite/client" />
 
-import { Toaster } from '@starter/ui/components/shadcn/sonner';
-import { TanStackDevtools } from '@tanstack/react-devtools';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
-  createRootRouteWithContext,
+  createRootRoute,
   HeadContent,
   Outlet,
   Scripts,
 } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
-import { OptionalUserProvider } from '@/contexts/optional-user-context';
-import { authLoader } from '@/lib/auth-loader';
-import type { RouterContext } from '@/router';
 import appCss from '@/styles/app.css?url';
 
 const RootComponent = () => {
-  const { user } = Route.useRouteContext();
-
   return (
     <RootDocument>
-      <OptionalUserProvider user={user}>
-        <Outlet />
-      </OptionalUserProvider>
+      <Outlet />
     </RootDocument>
   );
 };
@@ -38,29 +28,19 @@ const RootDocument = ({ children }: Readonly<{ children: ReactNode }>) => {
       </head>
       <body className="h-full">
         {children}
-        <Toaster
-          closeButton
-          richColors
-        />
-        <ReactQueryDevtools buttonPosition="top-right" />
-        <TanStackDevtools config={{ position: 'bottom-right' }} />
         <Scripts />
       </body>
     </html>
   );
 };
 
-export const Route = createRootRouteWithContext<RouterContext>()({
-  beforeLoad: async () => {
-    const { user } = await authLoader();
-    return { user };
-  },
+export const Route = createRootRoute({
   head: () => {
     return {
       meta: [
         { charSet: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { title: 'Starter App' },
+        { title: 'Portfolio' },
       ],
       links: [
         { rel: 'stylesheet', href: appCss },

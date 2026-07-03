@@ -1,12 +1,13 @@
-## TanStack Start Monorepo
+## Pixel Sidescroller Portfolio
 
 ---
 ### Repository Layout (High Level)
 ```
 apps/
-	web/          Frontend (Vite + TanStack Start)
+	web/                       Frontend (Vite + TanStack Start)
+	  src/components/game/     Sidescroller scene, movement, landmarks
+	  src/routes/              File-based routes (single page: index)
 packages/
-	backend/      Auth, DB (Drizzle), Supabase
 	ui/           Shared React components (shadcn/ui)
 	logger/       Logging utilities
 	tsconfig/     Shared TS configs

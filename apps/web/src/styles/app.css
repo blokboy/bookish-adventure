@@ -2,6 +2,75 @@
 
 @source "../";
 
+@font-face {
+  font-family: 'Ithaca';
+  src: url('/Hires/ithaca-font/Ithaca-LVB75.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@keyframes dragon-flight {
+  0% {
+    transform: translate(-20vw, 24vh);
+    opacity: 1;
+  }
+  38% {
+    transform: translate(120vw, 8vh);
+    opacity: 1;
+  }
+  38.5% {
+    opacity: 0;
+  }
+  99% {
+    transform: translate(120vw, 8vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-20vw, 24vh);
+    opacity: 0;
+  }
+}
+
+@keyframes dragon-flap {
+  from {
+    transform: rotate(-12deg);
+  }
+  to {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes butterfly-flap {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0.4);
+  }
+}
+
+@keyframes butterfly-drift {
+  0% {
+    transform: translate(-5vw, 0);
+  }
+  20% {
+    transform: translate(15vw, -18px);
+  }
+  40% {
+    transform: translate(35vw, 10px);
+  }
+  60% {
+    transform: translate(55vw, -14px);
+  }
+  80% {
+    transform: translate(75vw, 8px);
+  }
+  100% {
+    transform: translate(105vw, -4px);
+  }
+}
+
 :root {
   --background: oklch(0.985 0.002 95);
   --foreground: oklch(0.25 0.02 50);
