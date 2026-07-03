@@ -154,6 +154,7 @@ export const Scene = () => {
           tagColor={activeInfo.type === 'statue' ? 'purple' : 'amber'}
           body={activeInfo.body}
           url={activeInfo.type !== 'info' ? activeInfo.url : undefined}
+          links={activeInfo.type === 'info' ? activeInfo.links : undefined}
           onClose={closeInfo}
         />
       )}

@@ -44,7 +44,10 @@ export const TouchControls = () => {
   }
 
   return (
-    <div className="absolute inset-x-0 bottom-6 z-10 flex items-end justify-between px-6">
+    <div
+      className="absolute inset-x-0 z-10 flex items-end justify-between px-6"
+      style={{ bottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}
+    >
       <div className="flex gap-3">
         <ControlButton
           code="ArrowLeft"

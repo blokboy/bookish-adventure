@@ -27,9 +27,9 @@ export const InfoPanel = ({
   links,
   onClose,
 }: InfoPanelProps) => (
-  <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/40 px-4">
+  <div className="absolute inset-0 z-20 flex items-start justify-center overflow-y-auto bg-black/40 px-4 py-8">
     <div
-      className="w-full max-w-md border-4 border-black bg-[#fdf6e3] p-5 font-mono"
+      className="my-auto w-full max-w-md border-4 border-black bg-[#fdf6e3] p-5 font-mono"
       style={{ boxShadow: '8px 8px 0 rgba(0,0,0,0.4)' }}
     >
       <div className="mb-3 flex flex-wrap items-center gap-2">

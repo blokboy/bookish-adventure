@@ -87,7 +87,7 @@ export const projectLandmarks: ProjectLandmark[] = [
     tag: 'Work Experience',
     body: [
       "An old friend from high school who I used to be in Robotics Club/Math Team had reached out to tell me about the Recurse Center. It's a collective of programmers who go to this hallowed institution to learn and build whatever feels compelling.",
-      'And because it was in New York City, a place that felt so different from the midwest, it seemed like a good idea to try to go. While there I worked on CRDTs due to my obsession with Figma, and I ended up getting connected to EnergyHub through RC.',
+      'And because it was in New York City, a place that felt so different from the midwest, it seemed like a good idea to try to go. I ended up getting connected to EnergyHub through RC.',
       "The work was far more exciting than I had expected, especially since Texas had experienced a massive power outage in 2021, and the work we did wasn't able to do much for the people who had been affected because TX has an independent energy grid.",
       "And this was the first time in my nascent career that I had to confront the material impact of my work, as well as its limitations. I also started to think more about the regulatory environments that surrounded the industry I wanted to be apart of because in some cases it dictates the boundaries of what is possible, and I'd never had to think about that before.",
     ],
