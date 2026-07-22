@@ -12,6 +12,30 @@ export type InfoLandmark = {
   links?: ContactLink[];
 };
 
+export type SkillColor =
+  | 'red'
+  | 'orange'
+  | 'amber'
+  | 'yellow'
+  | 'lime'
+  | 'green'
+  | 'emerald'
+  | 'teal'
+  | 'cyan'
+  | 'sky'
+  | 'blue'
+  | 'indigo'
+  | 'violet'
+  | 'purple'
+  | 'fuchsia'
+  | 'pink'
+  | 'rose';
+
+export type Skill = {
+  label: string;
+  color: SkillColor;
+};
+
 export type ProjectLandmark = {
   id: string;
   type: 'project';
@@ -21,6 +45,7 @@ export type ProjectLandmark = {
   image: string;
   body?: string[];
   tag?: string;
+  skills?: Skill[];
 };
 
 export type StatueLandmark = {
@@ -34,6 +59,36 @@ export type StatueLandmark = {
 };
 
 export type Landmark = InfoLandmark | ProjectLandmark | StatueLandmark;
+
+const SKILL_COLORS: Record<string, SkillColor> = {
+  Python: 'red',
+  'SciPy + NumPy': 'orange',
+  Pandas: 'amber',
+  AWS: 'yellow',
+  Ansible: 'lime',
+  'Spring Boot': 'green',
+  TypeScript: 'emerald',
+  Go: 'teal',
+  'C#': 'cyan',
+  Blender: 'sky',
+  Unity: 'blue',
+  Figma: 'indigo',
+  Solidity: 'violet',
+  Actions: 'purple',
+  'React Native': 'fuchsia',
+  'iOS + Android': 'pink',
+  Rust: 'rose',
+  'Llama CPP': 'lime',
+};
+
+const skillsFor = (labels: string[]): Skill[] =>
+  labels.map((label) => {
+    const color = SKILL_COLORS[label];
+    if (!color) {
+      throw new Error(`Missing skill color mapping for "${label}"`);
+    }
+    return { label, color };
+  });
 
 export const aboutLandmark: InfoLandmark = {
   id: 'about',
@@ -54,7 +109,7 @@ export const contactLandmark: InfoLandmark = {
   x: 7661,
   body: ["Thanks for making it all the way here. Let's talk:"],
   links: [
-    { label: 'abonraws@gmail.com', href: 'mailto:abonraws@gmail.com' },
+    { label: 'jordanthedev@gmail.com', href: 'mailto:jordanthedev@gmail.com' },
     {
       label: 'https://github.com/blokboy',
       href: 'https://github.com/blokboy',
@@ -71,10 +126,11 @@ export const projectLandmarks: ProjectLandmark[] = [
     url: 'https://www.wolframalpha.com/',
     image: '/Hires/cropped/City-03.png',
     tag: 'Work Experience',
+    skills: skillsFor(['Python', 'SciPy + NumPy', 'Pandas', 'AWS', 'Ansible']),
     body: [
-      "My first job after finishing undergrad, where I was excited to get to work on the Mathematica team. It was a pleasure to work on something that hadn't allowed extensive legacy to prevent it from still being ambitious.",
-      'The majority of my time here would be spent finding better ways to break down algebraic expressions from the "search" engine into component parts so that the logic could be followed more acutely. And the majority of the work I did was in Python (back when pandas was all the rage).',
-      'It was almost the perfect job, but living in Champaign, IL was not something I wanted for my 20s...',
+      "This was my first job after finishing undergrad, and I was excited to work on the Mathematica team on something that hadn't accumulated so much legacy it couldn't still be ambitious.",
+      'The majority of my time was spent finding better ways to break algebraic expressions from the "search" engine down into component parts so the underlying logic could be followed more acutely.',
+      "It was almost the perfect job, but living in Champaign, IL wasn't something I wanted for my 20s...",
     ],
   },
   {
@@ -85,11 +141,19 @@ export const projectLandmarks: ProjectLandmark[] = [
     url: 'https://www.energyhub.com/',
     image: '/Hires/cropped/City-05.png',
     tag: 'Work Experience',
+    skills: skillsFor([
+      'Python',
+      'Spring Boot',
+      'AWS',
+      'Ansible',
+      'SciPy + NumPy',
+      'Pandas',
+    ]),
     body: [
-      "An old friend from high school who I used to be in Robotics Club/Math Team had reached out to tell me about the Recurse Center. It's a collective of programmers who go to this hallowed institution to learn and build whatever feels compelling.",
-      'And because it was in New York City, a place that felt so different from the midwest, it seemed like a good idea to try to go. I ended up getting connected to EnergyHub through RC.',
-      "The work was far more exciting than I had expected, especially since Texas had experienced a massive power outage in 2021, and the work we did wasn't able to do much for the people who had been affected because TX has an independent energy grid.",
-      "And this was the first time in my nascent career that I had to confront the material impact of my work, as well as its limitations. I also started to think more about the regulatory environments that surrounded the industry I wanted to be apart of because in some cases it dictates the boundaries of what is possible, and I'd never had to think about that before.",
+      'A friend from Robotics Club/Math Team introduced me to the Recurse Center, a self-directed programmer collective in New York City, which led to my connection with EnergyHub.',
+      "The work turned out to be more compelling than I expected, especially given the backdrop of the 2021 Texas power outage, though the work we did couldn't help those affected since Texas runs an independent power grid.",
+      'This was the first time in my career I had to reckon with the real-world impact and limits of my work.',
+      "It also pushed me to think more about the regulatory environments shaping the energy industry, since those rules can define the boundaries of what's technically possible.",
     ],
   },
   {
@@ -100,13 +164,13 @@ export const projectLandmarks: ProjectLandmark[] = [
     url: 'https://www.crunchbase.com/organization/eternal',
     image: '/Hires/cropped/City-07.png',
     tag: 'Work Experience',
+    skills: skillsFor(['TypeScript', 'Go', 'C#', 'Blender', 'Unity', 'Figma']),
     body: [
-      `I was approached by a friend who had just raised a round for a startup that was interested in trying to blur the lines between online gaming and social networking. I was excited to get to take what I had learned about CRDTs in production and apply it 
-       to something complex like managing real time data for a game. I was the first backend hire, so I got to help shape the architecture of the backend with the help of the Unity Lead to build what ultimately became Place, an iOS/Android app, that was built using
-       Unity and C# on the client, and TypeScript/NestJS on the backend with sporadic pepperings of Python and Golang for data processing. This was a fun project because I got to work with a lot of different technologies, and I got to learn a lot about how to build a product that was both performant and scalable. 
-       I also got to work with a lot of different people, and I learned a lot about how to work with people who have different skill sets and backgrounds, which was arguably the best part. Seeing the technical artists craft a new asset, then seeing that asset be given character by the client, and then to persist 
-       the consequences of that character's actions was a really rewarding experience. But the thing about start ups...
-      `,
+      "A friend who had just raised a round for a startup approached me about blurring the lines between online gaming and social networking, and I was excited to apply what I'd learned about CRDTs in production to real-time data.",
+      'As the first backend hire, I helped shape the architecture alongside the Unity Lead to build what became Place, a mobile app blending social presence with live gameplay.',
+      'It was a fun project that let me work across a lot of different technologies and with people from many different skill sets and backgrounds, which was arguably the best part.',
+      "Watching a technical artist's asset take shape, get given character by the client, and then persist the consequences of that character's actions was a genuinely rewarding experience.",
+      'But the thing about startups...',
     ],
   },
   {
@@ -117,12 +181,12 @@ export const projectLandmarks: ProjectLandmark[] = [
     url: 'https://nouns.build/',
     image: '/Hires/cropped/City-10.png',
     tag: 'Work Experience',
+    skills: skillsFor(['TypeScript', 'Python', 'Solidity', 'Figma', 'Actions']),
     body: [
-      'At the end of my previous role, I had gotten intrigued by the working progress of Web3, especially in Brooklyn where it seemed like a lot of new startups were being built.',
-      'I had been working on a side project with a few friends that would allow individual crypto wallets to act as individual signers on a group crypto wallet and make collective purchases of digital assets.',
-      'This was a fun project that was noticed by one of the founders of Zora who had been thinking of building something along a similar premise. So, me and my friends were hired to build what would become known as NounsBuilder, an app that allowed collective auctioning strategies for groups buying and selling digital art.',
-      'The vast majority of my work here was in Solidity/Foundry and React/TypeScript. Occasionally, I got to mess around with the backend and CI/CD processes, which meant I got to sneak in some AWS here too.',
-      "The project felt like a success and that wasn't something that was very familiar in the startup world, where many projects are attempts at finding product market fit.",
+      "At the end of my previous role, I'd gotten intrigued by the growing progress of Web3, especially in Brooklyn where it felt like a lot of new startups were being built.",
+      "I'd been building a side project with a few friends that let individual crypto wallets act as signers on a group wallet, making collective purchases of digital assets.",
+      "One of Zora's founders noticed the project and had been thinking about something similar, so my friends and I were hired to build what became NounsBuilder, an app enabling collective auctioning strategies for groups buying and selling digital art.",
+      "The project felt like a success, which wasn't something I was used to in the startup world, where most projects are still hunting for product-market fit.",
     ],
   },
   {
@@ -133,10 +197,17 @@ export const projectLandmarks: ProjectLandmark[] = [
     url: 'https://rainbow.me/',
     image: '/Hires/cropped/City-12.png',
     tag: 'Work Experience',
+    skills: skillsFor([
+      'React Native',
+      'TypeScript',
+      'iOS + Android',
+      'Figma',
+      'Solidity',
+    ]),
     body: [
-      'I had been getting more and more interested in the world of Web3 and the markets it was creating, and I had been following and contributing to an open source project called Rainbow, which was a mobile wallet for Ethereum and other EVM compatible chains.',
-      'After meeting the founders, I was offered a role to work on the backend and protocol side for the wallet as they began to expand beyond the capacities of what Reach Native could provide. The vast majority of my time here was spent working on backend services that would be used for Rainbow Router.',
-      'A smart contract that would allow users to swap their tokens across different exchanges and LPs in a single transaction while allowing user to take the least gas intensive route to do so.',
+      "I'd been getting more and more interested in Web3, and I'd been following and contributing to Rainbow, an open-source mobile wallet for Ethereum and other EVM-compatible chains.",
+      'After meeting the founders, I was offered a role on the backend and protocol side as the wallet outgrew what its original stack could support, and most of my time went into backend services powering Rainbow Router.',
+      'Rainbow Router let users swap tokens across different exchanges and liquidity pools in a single transaction while routing them through the least gas-intensive path.',
     ],
   },
   {
@@ -146,10 +217,12 @@ export const projectLandmarks: ProjectLandmark[] = [
     x: 7249,
     image: '/Hires/cropped/City-15.png',
     tag: 'Work Experience',
+    skills: skillsFor(['TypeScript', 'Python', 'Rust', 'Llama CPP', 'Figma']),
     body: [
-      'My old roommate from college had been working as a litigator as a swanky firm in Houston, and they were interested in contracting with a small engineering team to build a set of specialized AI tools (LLMs/Agents) to help them with automating some of the day to day tasks of running the firm.',
-      'After working with them for a few months, I decided to go into business with my friend and we started Blok Labs, a small consultancy that specialized in building AI tools for law firms (and only law firms).',
-      'Most of my time here is spent working with LangChain to craft agents that are more uniquely tailored to the myriad of tasks that a law firm has to do. We never made a website. The lawyers did not care about that. *sigh*',
+      "My old roommate from college, now a litigator at a firm in Houston, wanted to contract a small engineering team to build specialized AI tools to automate some of the firm's day-to-day work.",
+      'After a few months of that, I went into business with my friend and we started Blok Labs, a small consultancy building AI tools exclusively for law firms.',
+      'Most of my time goes into crafting agents tailored to the many different tasks a law firm has to handle.',
+      "We never made a website — the lawyers didn't care about that. *sigh*",
     ],
   },
 ];
@@ -159,7 +232,7 @@ export const statueLandmarks: StatueLandmark[] = [
     id: 'statue-1',
     type: 'statue',
     title: 'ParlayRace',
-    x: 2244,
+    x: 608,
     url: 'https://parlayrace-production.up.railway.app',
     body: [
       'Too many of my friends think they are sports gurus, so I thought it would be fun to make a game to see if that holds up.',
@@ -172,11 +245,35 @@ export const statueLandmarks: StatueLandmark[] = [
     id: 'statue-2',
     type: 'statue',
     title: 'TorLink',
-    x: 4627,
+    x: 2862,
     url: 'https://www.npmjs.com/package/torlnk',
     body: [
       'A simple CLI tool that allows you to easily create a Tor hidden service and link it to your local machine for searching for torrents.',
       'Built with TypeScript and Node.js. I started contributing after I used it to find lost seasons of Jackass because my Gen Z nephews did not believe it was real.',
+    ],
+    tag: 'Open Source Contributions',
+  },
+  {
+    id: 'statue-3',
+    type: 'statue',
+    title: 'Maxim',
+    x: 5614,
+    url: 'https://github.com/j4redux/maxim',
+    body: [
+      'A self-hostable, agent-native multiplayer chat client — humans share workspaces and threads, and @-mentioning the bot kicks off an agent turn that replies right in the conversation.',
+      'Built with Rust, TypeScript, and Python, it runs against a stub runtime out of the box or plugs into Centaur for real agent execution.',
+    ],
+    tag: 'Open Source Contributions',
+  },
+  {
+    id: 'statue-4',
+    type: 'statue',
+    title: 'Autumn',
+    x: 6900,
+    url: 'https://github.com/blokboy/autumn',
+    body: [
+      'A terminal command center for GEPA prompt-optimization runs, wrapping a live Textual dashboard around runs, a persistent chat surface, and local or hosted model routing.',
+      'Inspired by TorLink and built with Textual and Python, it lets you watch optimization runs in real time and manage models without leaving the terminal.',
     ],
     tag: 'Open Source Contributions',
   },

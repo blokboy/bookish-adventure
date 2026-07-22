@@ -3,12 +3,12 @@ import { Building } from './building';
 import { Butterflies } from './butterfly';
 import { characterPalette, idleFrame, walkCycle } from './character-sprites';
 import { ControlsHint } from './controls-hint';
-import { DecorationSprite, Statue } from './decoration';
+import { DecorationSprite, LandmarkLamppost } from './decoration';
 import { decorations } from './decorations';
 import { Dragon } from './dragon';
 import { GameTitle } from './game-title';
 import { InfoPanel } from './info-panel';
-import { aboutLandmark, landmarks } from './landmarks';
+import { aboutLandmark, landmarks, statueLandmarks } from './landmarks';
 import { PixelSprite } from './pixel-sprite';
 import { RANDOM_THOUGHTS } from './random-thoughts';
 import { Signpost } from './signpost';
@@ -25,11 +25,9 @@ const SPRITE_COLUMNS = 8;
 const AVATAR_WIDTH = SPRITE_COLUMNS * CHARACTER_PIXEL_SIZE;
 const WORLD_WIDTH = 8150;
 const AVATAR_SPAWN_X = aboutLandmark.x - 220;
-const firstLamppost = decorations
-  .filter((decoration) => decoration.kind === 'lamppost')
-  .reduce((closest, decoration) =>
-    decoration.x < closest.x ? decoration : closest
-  );
+const firstLamppost = statueLandmarks.reduce((closest, landmark) =>
+  landmark.x < closest.x ? landmark : closest
+);
 const FIRST_LAMPPOST_CLEAR_X = firstLamppost.x + 60;
 
 export const Scene = () => {
@@ -101,7 +99,7 @@ export const Scene = () => {
                 image={landmark.image}
               />
             ) : landmark.type === 'statue' ? (
-              <Statue title={landmark.title} />
+              <LandmarkLamppost title={landmark.title} />
             ) : (
               <Signpost title={landmark.title} />
             )}
@@ -152,6 +150,7 @@ export const Scene = () => {
               : undefined
           }
           tagColor={activeInfo.type === 'statue' ? 'purple' : 'amber'}
+          skills={activeInfo.type === 'project' ? activeInfo.skills : undefined}
           body={activeInfo.body}
           url={activeInfo.type !== 'info' ? activeInfo.url : undefined}
           links={activeInfo.type === 'info' ? activeInfo.links : undefined}

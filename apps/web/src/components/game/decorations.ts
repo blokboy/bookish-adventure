@@ -1,9 +1,11 @@
-export type Decoration =
-  | { id: string; kind: 'lamppost'; x: number }
-  | { id: string; kind: 'building'; x: number; image: string };
+export type Decoration = {
+  id: string;
+  kind: 'building';
+  x: number;
+  image: string;
+};
 
 export const decorations: Decoration[] = [
-  { id: 'deco-lamppost-1', kind: 'lamppost', x: 608 },
   {
     id: 'deco-building-1',
     kind: 'building',
@@ -22,7 +24,6 @@ export const decorations: Decoration[] = [
     x: 2692,
     image: '/Hires/cropped/City-06.png',
   },
-  { id: 'deco-lamppost-2', kind: 'lamppost', x: 2862 },
   {
     id: 'deco-building-4',
     kind: 'building',
@@ -41,7 +42,6 @@ export const decorations: Decoration[] = [
     x: 4959,
     image: '/Hires/cropped/City-11.png',
   },
-  { id: 'deco-lamppost-3', kind: 'lamppost', x: 5614 },
   {
     id: 'deco-building-7',
     kind: 'building',
