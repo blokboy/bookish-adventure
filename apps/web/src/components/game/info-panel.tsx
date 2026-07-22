@@ -3,10 +3,35 @@ type InfoPanelLink = {
   href: string;
 };
 
+type SkillColor =
+  | 'red'
+  | 'orange'
+  | 'amber'
+  | 'yellow'
+  | 'lime'
+  | 'green'
+  | 'emerald'
+  | 'teal'
+  | 'cyan'
+  | 'sky'
+  | 'blue'
+  | 'indigo'
+  | 'violet'
+  | 'purple'
+  | 'fuchsia'
+  | 'pink'
+  | 'rose';
+
+type InfoPanelSkill = {
+  label: string;
+  color: SkillColor;
+};
+
 type InfoPanelProps = {
   title: string;
   tag?: string;
   tagColor?: 'amber' | 'purple';
+  skills?: InfoPanelSkill[];
   body?: string[];
   url?: string;
   links?: InfoPanelLink[];
@@ -18,10 +43,31 @@ const TAG_COLOR_CLASSES: Record<'amber' | 'purple', string> = {
   purple: 'bg-purple-400',
 };
 
+const SKILL_COLOR_CLASSES: Record<SkillColor, string> = {
+  red: 'border-red-600 text-red-700',
+  orange: 'border-orange-600 text-orange-700',
+  amber: 'border-amber-600 text-amber-700',
+  yellow: 'border-yellow-600 text-yellow-700',
+  lime: 'border-lime-600 text-lime-700',
+  green: 'border-green-600 text-green-700',
+  emerald: 'border-emerald-600 text-emerald-700',
+  teal: 'border-teal-600 text-teal-700',
+  cyan: 'border-cyan-600 text-cyan-700',
+  sky: 'border-sky-600 text-sky-700',
+  blue: 'border-blue-600 text-blue-700',
+  indigo: 'border-indigo-600 text-indigo-700',
+  violet: 'border-violet-600 text-violet-700',
+  purple: 'border-purple-600 text-purple-700',
+  fuchsia: 'border-fuchsia-600 text-fuchsia-700',
+  pink: 'border-pink-600 text-pink-700',
+  rose: 'border-rose-600 text-rose-700',
+};
+
 export const InfoPanel = ({
   title,
   tag,
   tagColor = 'amber',
+  skills,
   body,
   url,
   links,
@@ -42,6 +88,18 @@ export const InfoPanel = ({
           </span>
         )}
       </div>
+      {skills && skills.length > 0 && (
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          {skills.map((skill) => (
+            <span
+              key={skill.label}
+              className={`rounded-full border-2 bg-white px-2 py-0.5 font-bold text-[10px] ${SKILL_COLOR_CLASSES[skill.color]}`}
+            >
+              {skill.label}
+            </span>
+          ))}
+        </div>
+      )}
       {url && (
         <a
           href={url}
