@@ -233,7 +233,7 @@ export const statueLandmarks: StatueLandmark[] = [
     type: 'statue',
     title: 'ParlayRace',
     x: 608,
-    url: 'https://parlayrace-production.up.railway.app',
+    url: 'https://parlayrace-web-xi.vercel.app/',
     body: [
       'Too many of my friends think they are sports gurus, so I thought it would be fun to make a game to see if that holds up.',
       'This is a simple game where you can compete against your friends to see who can make the best predictions on sports, politics, even the weather.',
@@ -246,7 +246,7 @@ export const statueLandmarks: StatueLandmark[] = [
     type: 'statue',
     title: 'TorLink',
     x: 2862,
-    url: 'https://www.npmjs.com/package/torlnk',
+    url: 'https://www.github.com/baairon/torlnk',
     body: [
       'A simple CLI tool that allows you to easily create a Tor hidden service and link it to your local machine for searching for torrents.',
       'Built with TypeScript and Node.js. I started contributing after I used it to find lost seasons of Jackass because my Gen Z nephews did not believe it was real.',
