@@ -246,7 +246,7 @@ export const statueLandmarks: StatueLandmark[] = [
     type: 'statue',
     title: 'TorLink',
     x: 2862,
-    url: 'https://www.github.com/baairon/torlnk',
+    url: 'https://www.github.com/baairon/torlink',
     body: [
       'A simple CLI tool that allows you to easily create a Tor hidden service and link it to your local machine for searching for torrents.',
       'Built with TypeScript and Node.js. I started contributing after I used it to find lost seasons of Jackass because my Gen Z nephews did not believe it was real.',
